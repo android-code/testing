@@ -1,0 +1,31 @@
+apply plugin: 'checkstyle'
+task checkstyle(type: Checkstyle) {
+    description 'checkstyle analyze'
+    group 'verification'
+    configFile file('./analyze/checkstyle.xml')
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+}
+
+apply plugin: 'pmd'
+task pmd(type: Pmd) {
+    description 'pmd'
+    group 'verification'
+    ruleSetFiles = files("./analyze/pmd.xml")
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+}
+
+apply plugin: 'findbugs'
+task findbugs(type: FindBugs) {
+    description 'findbugs'
+    group 'verification'
+    excludeFilter file('./analyze/findbugs.xml')
+    classes = files("$project.buildDir/intermediates/javac")
+    source 'src/main/java'
+    effort 'max'
+    classpath = files()
+}
