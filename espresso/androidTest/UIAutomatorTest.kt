@@ -1,7 +1,7 @@
 @RunWith(AndroidJUnit4::class)
 class UIAutomatorTest {
 
-    private val APP_PACKAGE = "pl.androidcode"
+    private val APP_PACKAGE = "pl.androidcode.espresso"
     private val SMS_APP_PACKAGE = "com.google.android.apps.messaging"
 
     private lateinit var device: UiDevice
